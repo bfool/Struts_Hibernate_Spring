@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.city.oa.value">
+
+    <class name="CourseValue" table="oa_Course" lazy="true">
+        <id name="cno">
+        </id>
+        <property name="cname"></property>
+        <property name="credit"></property>
+        
+        <set name="students" table="oa_StudentCourse" inverse="true">
+        	<key column="cno"></key>
+       		<many-to-many class="StudentValue" column="ssid"/>
+        </set>
+        
+    </class>
+
+</hibernate-mapping>

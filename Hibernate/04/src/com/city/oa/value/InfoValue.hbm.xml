@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.city.oa.value">
+
+    <class name="InfoValue" table="OA_Info">
+        <id name="infono" type="int">
+           <generator class="increment"/> 
+        </id>
+        <property name="subject" ></property>
+        <property name="content" ></property>
+        <property name="infodate" ></property>
+        <many-to-one name="gno" class="CategoryValue" column="GNO"/>
+        
+    </class>
+
+</hibernate-mapping>

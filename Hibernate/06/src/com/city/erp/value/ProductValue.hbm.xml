@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.city.erp.value">
+
+    <class name="ProductValue" table="erp_product" lazy="true">
+        <id name="pno">
+         <generator class="increment"/> 
+        </id>
+        <property name="pname"></property>
+        <property name="unitprice"></property>
+        <property name="qty"></property>
+        
+       <many-to-one name="cno" class="CategoryValue" column="cno" lazy="false"/>
+        
+    </class>
+
+</hibernate-mapping>

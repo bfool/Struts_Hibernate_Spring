@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="root" namespace="/" extends="json-default">
+		<!-- 拦截器 -->
+		<interceptors>
+			<interceptor name="homepageaccesscount"
+				class="com.demo.interceptor.HomePageAccessCountInterceptor"></interceptor>
+			<interceptor name="ipcheck"
+				class="com.demo.interceptor.IPCheckInterceptor"></interceptor>
+			<interceptor-stack name="demostack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="homepageaccesscount"></interceptor-ref>
+				<interceptor-ref name="ipcheck"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="demooastack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="sql">/error/sqlexception.jsp</result>
+			<result name="driver">/error/driverexception.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
+			<exception-mapping result="driver" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+	</package>
+
+	<package name="main" namespace="/main" extends="root">
+		<action name="toBusinessA" class="com.demo.action.HomeMainAction"
+			method="toBusinessA">
+			<result name="toBusinessA">/a/main.jsp</result>
+		</action>
+	</package>
+
+	<package name="businessa" namespace="/a" extends="root">
+		<!-- businessA实体主页面中导航的相关业务 -->
+		<action name="toadd" class="businessAMainAction" method="toadd">
+			<result name="toadd">/a/add.jsp</result>
+		</action>
+		<action name="todelete" class="businessAMainAction" method="todelete">
+			<result name="todelete">/a/delete.jsp</result>
+		</action>
+		<action name="toupdate" class="businessAMainAction" method="toupdate">
+			<result name="toupdate">/a/update.jsp</result>
+		</action>
+		<action name="toview" class="businessAMainAction" method="toview">
+			<result name="toview">/a/view.jsp</result>
+		</action>
+		
+		<!-- businessA中具体的业务实现 -->
+		<action name="add" class="businessAProcessAction" method="add">
+			<result name="main" type="redirect">/a/main.jsp</result>
+			<result name="toadd">/a/add.jsp</result>
+		</action>
+		<action name="delete" class="businessAProcessAction" method="delete">
+			<result name="main" type="redirect">/a/main.jsp</result>
+			<result name="todelete">/a/delete.jsp</result>
+		</action>
+		<action name="add" class="businessAProcessAction" method="update">
+			<result name="main" type="redirect">/a/main.jsp</result>
+			<result name="toupdate">/a/update.jsp</result>
+		</action>
+		<action name="view" class="businessAProcessAction" method="view">
+			<result name="main" type="redirect">/a/main.jsp</result>
+			<result name="toview">/a/view.jsp</result>
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.city.erp.value">
+
+    <class name="InventoryValue" table="ERP_Inventory" lazy="true">
+        <id name="invno">
+        </id>
+        <property name="qty"/>
+         <many-to-one name="pid" class="ProductValue" column="pid" lazy="false"/>
+          <many-to-one name="wno" class="WarehouseValue" column="wno"/>
+    </class>
+</hibernate-mapping>

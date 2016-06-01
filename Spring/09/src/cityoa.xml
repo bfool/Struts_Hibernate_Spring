@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="root" namespace="/" extends="json-default" >
+		
+		<interceptors>
+			<interceptor name="emplogincheck" class="com.city.oa.interceptor.EmployeeLoginCheckInterceptor" />
+			<interceptor-stack name="cityoastack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="emplogincheck"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+		   <result name="login" type="redirect">/login.jsp</result>
+		   <result name="main" type="redirectAction">/home/tomain.action?id=${id}</result>
+		   <result name="error">/error/error.jsp</result>
+		</global-results>
+		<!--  
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error"/>
+		</global-exception-mappings>
+		-->
+		
+		<action name="login" class="com.city.oa.action.EmployeeLoginAction"  method="login">
+		   <result name="login">/login.jsp</result>
+		</action>
+		<action name="logout" class="com.city.oa.action.EmployeeLogoutAction" method="logout">
+		</action>
+		
+	</package>
+	<package name="home" namespace="/home" extends="root" >
+		<default-interceptor-ref name="cityoastack"></default-interceptor-ref>
+		
+		<action name="tomain" class="com.city.oa.action.HomeMainAction" method="tomain">
+		    <result name="tomain">/home/main.jsp</result>
+		    <result name="login">/login.jsp</result>
+		    <interceptor-ref name="cityoastack"/>
+		</action>
+	
+	</package>
+	<package name="department_admin" namespace="/department" extends="home" >
+		
+		<action name="to*" class="com.city.oa.action.DepartmentMainAction" method="to{1}">
+			<result name="to{1}" >/department/{1}.jsp</result>
+			<interceptor-ref name="cityoastack"/>
+		</action>
+		
+		
+		
+		<action name="tolist" class="com.city.oa.action.DepartmentMainAction" method="tolist">
+		   	<result name="tolist" type="json">
+		   	<param name="contentType">text/html;charset=UTF-8</param>
+		   	<param name="excludeProperties">dv</param>
+		   	<param name="includeProperties">departmentList\[\d+\]\.no,departmentList\[\d+\]\.code,departmentList\[\d+\]\.name</param>
+		   	
+		   	</result>
+		</action>
+		
+		<action name="toGetDepartment" class="com.city.oa.action.DepartmentMainAction" method="toGetDepartment">
+		   	<result name="toGetDepartment" type="json">
+		   	<param name="contentType">text/html;charset=UTF-8</param>
+		   	<param name="excludeProperties">departmentList,dv.employees</param>
+		   	</result>
+		</action>
+		
+		
+
+		<action name="add" class="com.city.oa.action.DepartmentProcessAction" method="add">
+			<result name="main" type="redirect">/department/tomain.action</result>
+			
+		</action>
+		
+		<action name="modify" class="com.city.oa.action.DepartmentProcessAction" method="modify">
+			<result name="main" type="redirect">/department/tomain.action</result>
+		</action>
+		
+		<action name="delete" class="com.city.oa.action.DepartmentProcessAction" method="delete">
+			<result name="main" type="redirect">/department/tomain.action</result>
+		</action>
+		
+		
+		
+		
+	
+	</package>
+	<!-- 员工包定义 -->
+	<package name="employee_admin" namespace="/employee" extends="home">
+		
+			
+		<action name="tomain" class="com.city.oa.action.EmployeeMainAction" method="tomain">
+			<result name="tomain">/employee/main.jsp</result>
+			
+			
+		</action>
+		
+		<action name="add" class="com.city.oa.action.EmployeeProcessAction" method="add">
+			<result name="success" type="redirect">/employee/main.jsp</result>
+			
+		</action>
+		
+	
+	</package>
+	
+	<package name="behave_admin" namespace="/behave" extends="home">
+	
+	
+	</package>
+
+    
+</struts>

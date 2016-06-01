@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.city.erp.value">
+
+    <class name="ProductValue" table="product">
+        <id name="pno" column="pno" type="int">
+           
+        </id>
+        <property name="pename" type="string" column="pename"></property>
+        <property name="pmodel" type="string" column="pmodel"></property>
+        <property name="price" column="price"></property>
+        
+        
+    </class>
+
+</hibernate-mapping>

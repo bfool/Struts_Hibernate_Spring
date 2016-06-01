@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.city.oa.value">
+
+    <class name="EmployeeValue" table="OA_Employee">
+        <id name="id" column="EMPID">
+            
+        </id>
+        <property name="password" column="EMPPassword" type="string" />
+        <property name="name" column="EMPNAME" />
+        
+        <property name="sex" column="EMPSEX" />
+        <property name="salary" />
+        
+        <property name="age" />
+        
+        <property name="photo" />
+        <property name="photoFileName" />
+        <property name="photoContentType" />
+        
+       	<many-to-one name="department" class="DepartmentValue" column="DEPTNO" lazy="false"></many-to-one>
+       	
+       	<set name="behaves" table="oa_employeebehave">
+       		<key column="EMPID" />
+       		<many-to-many class="BehaveValue" column="BNO" />
+       	</set>
+       	
+       	<one-to-one name="address" class="EmployeeAddressValue"  />
+        
+        
+        
+        
+    </class>
+
+</hibernate-mapping>

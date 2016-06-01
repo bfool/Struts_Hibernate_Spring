@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.city.oa.value">
+
+    <class name="CategoryValue" table="OA_Category" lazy="true">
+        <id name="gno" type="int">
+        </id>
+        <property name="gname"></property>
+        <set name="infos" table="OA_Info">
+        	<key column="gno"></key>
+       		<one-to-many class="InfoValue"/>
+        </set>
+        
+    </class>
+
+</hibernate-mapping>

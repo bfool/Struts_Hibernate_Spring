@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="root" namespace="/product" extends="struts-default">
+		<global-results>
+			<result name="sql">/error/sqlexception.jsp</result>
+			<result name="driver">/error/driverexception.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="sql" exception="java.sql.SQLException"></exception-mapping>
+			<exception-mapping result="driver" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="tomain" class="com.ibm.erp.baseinfo.action.ProductMainAction" method="tomain">
+			<result name="tomain">/product/main.jsp</result>
+		</action>
+		
+		<action name="toadd" class="com.ibm.erp.baseinfo.action.ProductMainAction" method="toadd">
+			<result name="toadd">/product/add.jsp</result>
+		</action>
+	
+		<action name="add" class="com.ibm.erp.baseinfo.action.ProductProcessAction" method="add">
+			
+			<result name="success" type="redirect">/product/main.jsp</result>
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="root" namespace="/" extends="json-default">
+	</package>
+	
+	<package name="score_add" namespace="/score" extends="root" >
+		<action name="add" class="com.city.crm.action.ScoreAddAction" method="add">
+			<result name="tomain">/score/main.jsp</result>
+		</action>
+	</package>
+	
+</struts>

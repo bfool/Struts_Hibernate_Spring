@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="root" namespace="/" extends="json-default">
+	</package>
+	
+	<package name="supplier_action" namespace="/supplier" extends="root" >
+		<action name="toadd" class="com.sap.erp.action.SupplierMainAction" method="toadd">
+			<result name="toadd">/supplier/add.jsp</result>
+		</action>
+		
+		<action name="add" class="com.sap.erp.action.SupplierProcessAction" method="add">
+			<result name="add">/supplier/show.jsp</result>
+		</action>
+	</package>
+	
+</struts>
