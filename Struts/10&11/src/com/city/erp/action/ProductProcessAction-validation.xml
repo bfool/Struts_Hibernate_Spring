@@ -1,0 +1,52 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="price">
+        <field-validator type="requiredstring">
+            <message>price</message>
+        </field-validator>
+        <field-validator type="double">
+        	<param name="min">10.0</param>
+        	<param name="max">100.0</param>
+            <message>整值，10-100</message>
+        </field-validator>
+        
+    </field>
+    <field name="savedate">
+        <field-validator type="requiredstring">
+            <message>为空</message>
+        </field-validator>
+        <field-validator type="int">
+        	<param name="min">10</param>
+        	<param name="max">30</param>
+        	<message>正数,${min}-${max}</message>
+        </field-validator>
+    </field>
+    
+    <field name="date">
+    	<field-validator type="date">
+    		<param name="min"></param>
+    		<param name="max">2013/11/1</param>
+    		
+    		<message></message>
+    	</field-validator>
+    </field>
+    <field name="email">
+    	<field-validator type="regex">
+    		<param name="regexExpression"><![CDATA[/^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/]]></param>
+    		<message>邮箱不合法</message>
+    	</field-validator>
+    </field>
+    
+    <field name="web">
+    	<field-validator type="requiredstring">
+    		<message key="web.empty"></message>
+    	</field-validator>
+    	<field-validator type="regex">
+    		<param name="regexExpression"><![CDATA[[a-zA-z]+://[^\s]*]]></param>
+    		<message>web不合法</message>
+    	</field-validator>
+    </field>
+</validators>
